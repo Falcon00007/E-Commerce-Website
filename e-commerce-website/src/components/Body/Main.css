@@ -20,7 +20,7 @@
     justify-content:space-between;
 }
 .content div{
-    margin:50px;
+    margin:30px 60px 40px 60px;
 }
 .content div h3{
     display: block;

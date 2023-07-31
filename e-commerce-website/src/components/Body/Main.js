@@ -1,51 +1,41 @@
 import React from "react";
 import "./Main.css";
+import Items from "./Items";
 
 const productsArr = [
   {
+    id:"album1",
     title: "Colors",
     price: 100,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
   },
   {
+    id:"album2",
     title: "Black and white Colors",
     price: 50,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
   },
   {
+    id:"album3",
     title: "Yellow and Black Colors",
     price: 70,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
   },
   {
+    id:"album4",
     title: "Blue Color",
     price: 100,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
   },
 ];
 
-let products=productsArr.map((product,index)=>{
-    return (
-        <div className="content" key={"album"+index+1}>
-        <div className="container" >
-          <h3>{product.title}</h3>
-          <div className="image-container">
-            <img className="prod-images" src={product.imageUrl} alt="alb1" />
-          </div>
-          <div className="prod-details">
-            <span>
-              $<span>{product.price}</span>
-            </span>
-            <button className="shop-item-button" type="button">
-              ADD TO CART
-            </button>
-           </div>
-          </div>
-        </div>
-    )
-})
+const Main = (props) => {
 
-const Main = () => {
+
+let products=productsArr.map((product,index)=>(
+  <Items id={product.id} title={product.title} imageUrl={product.imageUrl} price={product.price} index={index}/>
+))
+
   return( 
   <>
     <section>
