@@ -1,39 +1,15 @@
-import React from "react";
+import React,{useContext} from "react";
 import "./Main.css";
 import Items from "./Items";
+import { MyContext } from "../../context/AppContext";
+  
 
-const productsArr = [
-  {
-    id:"album1",
-    title: "Colors",
-    price: 100,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-  },
-  {
-    id:"album2",
-    title: "Black and white Colors",
-    price: 50,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-  },
-  {
-    id:"album3",
-    title: "Yellow and Black Colors",
-    price: 70,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-  },
-  {
-    id:"album4",
-    title: "Blue Color",
-    price: 100,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
-  },
-];
+const Main = () => {
 
-const Main = (props) => {
+  const {cartList, addItem} = useContext(MyContext);;
 
-
-let products=productsArr.map((product,index)=>(
-  <Items id={product.id} title={product.title} imageUrl={product.imageUrl} price={product.price} index={index}/>
+let products=cartList.map((product,index)=>(
+  <Items id={product.id} title={product.title} imageUrl={product.imageUrl} price={product.price} index={index} onAddHandler={()=>addItem(product.id)}/>
 ))
 
   return( 

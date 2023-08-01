@@ -29,4 +29,4 @@ const Modal = (props) => {
   );
 };
 
-export default Modal;import { Fragment } from 'react';
+export default Modal;

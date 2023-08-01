@@ -23,7 +23,7 @@
     font: inherit;
     cursor: pointer;
     background-color: transparent;
-    border: 1px solid #8a2b06;
+    border: 1px solid #110f0e;
     padding: 0.5rem 2rem;
     border-radius: 25px;
     margin-left: 1rem;
@@ -36,16 +36,40 @@
     color: white;
   }
   
-  .actions .button--alt {
+  .button--alt {
+    position: relative;
+    bottom: 50px;
+    font-size: xx-large;
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid #110f0e;
+    padding: 0.5rem;
+    border-radius: 10px;
+    height: 30px;
+    width: 5px;
     color: #8a2b06;
   }
-  
+  .button--alt h1{
+    transform: rotate(45deg);
+    position: inherit;
+    bottom: 30px;
+    right: 5px;
+  }
   .actions .button {
-    background-color: #8a2b06;
+    background-color: #e4d614;
     color: white;
   }
 
-h1{
+.mainHeading{
     text-align: center;
     font-family: fantasy;
+    display: block;
+}
+
+.cartHeadings{
+  display: flex;
+  font-weight: 700;
+  font-size: 20px;
+  justify-content: space-between;
+  width: 100%;
 }

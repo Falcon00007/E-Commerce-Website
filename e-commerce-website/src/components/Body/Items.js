@@ -1,18 +1,6 @@
-import React,{useContext} from 'react'
-import CartContext from '../../context/cart-context'
+import React from 'react'
 
 const Items = (props) => {
-    const cartCtx= useContext(CartContext);
-
-    const onClickHandler=()=>{
-        cartCtx.addItem({
-            id:props.id,
-            title:props.title,
-            url:props.imageUrl,
-            price:props.price.toFixed(2)
-        })
-    }
-
 
   return (
     <div className="content" key={props.id}>
@@ -22,10 +10,10 @@ const Items = (props) => {
             <img className="prod-images" src={props.imageUrl} alt={"alb"+props.index+1} />
           </div>
           <div className="prod-details">
-            <span>
+            <span className='price'>
               $<span>{props.price}</span>
             </span>
-            <button className="shop-item-button" type="button" onClick={onClickHandler}>
+            <button className="shop-item-button" type="button" onClick={props.onAddHandler}>
               ADD TO CART
             </button>
            </div>

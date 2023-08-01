@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.cartList{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.image{
+    height: 100px;
+    width: 100px;
+    position: relative;
+    right: 40px;
+}
+.title{
+    font-weight: 300;
+    position: relative;
+    right: 90px;
+    top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 120px;
+}
+.title>h3{
+    flex-wrap: wrap;
+} 
+.itemPrice{
+    position: relative;
+    right: 6rem;
+}
+.removeBtn{
+    height: 3rem;
+    border-radius: 15%;
+    width: 5rem;
+    background-color: rgb(233, 81, 81);
+}

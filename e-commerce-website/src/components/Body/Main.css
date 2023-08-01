@@ -18,9 +18,10 @@
     display:flex;
     flex-wrap: wrap;
     justify-content:space-between;
+    width: 40vw;
 }
 .content div{
-    margin:30px 60px 40px 60px;
+    margin:10px 40px 10px 20px;
 }
 .content div h3{
     display: block;
@@ -30,13 +31,15 @@
     color: #333;
     margin-bottom: 15px;
 }
-.content .prod-details{
+.prod-details{
     display: flex;
     margin: 8px;
     align-items: center;
     justify-content: space-between;
 }
 .image-container{
+    position: relative;
+    left: 8rem;
     height: 250px;
     width: 250px;
     overflow: hidden;
@@ -64,7 +67,14 @@
     font-weight: bold;
     border-radius: 4%;
     background-color: #56CCF2;
+    position: relative;
+   
 }
+
 .shop-item-button:hover{
     background-color: #0eabdf;
+}
+.price{
+    position: relative;
+    left: 8rem;
 }

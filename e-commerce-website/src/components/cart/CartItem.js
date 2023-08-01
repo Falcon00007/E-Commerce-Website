@@ -1,21 +1,17 @@
 import React from 'react'
+import "./CartItem.css";
 
-const CartItem = () => {
+const CartItem = (props) => {
   return (
     <>
-    <div>
-    <h1>ITEM</h1>
-    <h1>PRICE</h1>
-    <h1>QUANTITY</h1>
-    </div>
-    <li>
-    <div className='image'><img src={props.imageUrl}/></div>
-    <h3 className='title'>{props.title}</h3>
-    <h2 className='price'>{props.price}</h2>
+    <li className='cartList'>
+    <div ><img src={props.imageUrl} alt="albumImage" className='image'/></div>
+    <div className='title'><h3>{props.title}</h3></div>
+    <h2 className='itemPrice'>{props.price}</h2>
     <span className='quantity'>1</span>
-    <button className='removeBtn'>REMOVE</button>
+    <button className='removeBtn' onClick={props.itemRemoveHandler}>REMOVE</button>
     </li>
-  </>
+  </> 
   )
 }
 
