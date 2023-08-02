@@ -1,4 +1,5 @@
 import React,{useContext} from 'react'
+import { NavLink } from 'react-router-dom';
 import classes from "./Navbar.module.css";
 //import CartContext from '../../context/cart-context';
 //import { Container, Navbar,Nav } from 'react-bootstrap';
@@ -13,9 +14,9 @@ const MyNavbar = (props) => {
   return (
     <header>
             <ul className={classes.header}>
-                <li><a href="./index.html">HOME</a></li>
-                <li><a href="./store.html">STORE</a></li>
-                <li><a href="./about.html">ABOUT</a></li>
+                <li><NavLink to="/" activeClassName={classes.active_link}>HOME</NavLink></li>
+                <li><NavLink to="/" activeClassName={classes.active_link}>STORE</NavLink></li>
+                <li><NavLink to="/about" activeClassName={classes.active_link}>ABOUT</NavLink></li>
                 <button className={classes.cart_holder} id='cart' onClick={props.onShowCart}>cart</button>
                 <span className={classes.cart_number}>{numberOfCartItems}</span>           
             </ul>

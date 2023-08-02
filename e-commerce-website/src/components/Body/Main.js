@@ -6,21 +6,19 @@ import { MyContext } from "../../context/AppContext";
 
 const Main = () => {
 
-  const {cartList, addItem} = useContext(MyContext);;
+  const {productList, addItem} = useContext(MyContext);;
 
-let products=cartList.map((product,index)=>(
-  <Items id={product.id} title={product.title} imageUrl={product.imageUrl} price={product.price} index={index} onAddHandler={()=>addItem(product.id)}/>
+let products = productList.map((product,index)=>(
+  <Items key={product.id} id={product.id} title={product.title} imageUrl={product.imageUrl} price={product.price} index={index} onAddHandler={()=>addItem(product.id)}/>
 ))
 
   return( 
-  <>
     <section>
    <h2 className="heading">COLORS</h2>
     <div className="content-container">
     {products}
     </div>
     </section>
-  </>
   )
 };
 

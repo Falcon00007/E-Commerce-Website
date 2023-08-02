@@ -31,11 +31,10 @@ const AppContext = (props) => {
       },
     ];
   
-  const [cartList, setCartList] = useState(productList);
   const [cart, setCart] = useState([]);
 
   const addItem = (id)=>{
-    const addedProduct = cartList.find((product)=> product.id===id);
+    const addedProduct = productList.find((product)=> product.id===id);
     const addedProductIndex= cart.find((product)=> product.id===id);
     if(addedProductIndex){
       alert("The item is already in the cart!!")
@@ -45,12 +44,12 @@ const AppContext = (props) => {
     }
   }
 
-        const removeItem = (id)=>{
+  const removeItem = (id)=>{
           setCart((prevCart)=> prevCart.filter((item)=>item.id!==id))
         }
 
   return (
-    <MyContext.Provider value={{cartList, cart, addItem, removeItem}}>{props.children}</MyContext.Provider>
+    <MyContext.Provider value={{productList, cart, addItem, removeItem}}>{props.children}</MyContext.Provider>
   )
 }
 

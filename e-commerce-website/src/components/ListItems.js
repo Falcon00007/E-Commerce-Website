@@ -1,8 +1,10 @@
 import React,{useState} from 'react'
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import MyNavbar from './navbar/MyNavbar'
 import Main from './Body/Main'
 import Footer from './footer/Footer'
 import Cart from './cart/Cart'
+import About from './navbar/About';
 
 
 const ListItems = () => {
@@ -17,12 +19,15 @@ const ListItems = () => {
     };
 
   return (
-    <>
+    <Router>
     <MyNavbar onShowCart={showCartHandler}/>
     {cartIsShown && <Cart onClose={hideCartHandler}/>}
-    <Main/>
+    <Routes>
+    <Route path='/' element={<Main/>}/>
+    <Route path='/about' element={<About/>}/>
+    </Routes>
     <Footer/>
-    </>
+    </Router>
   )
 }
 

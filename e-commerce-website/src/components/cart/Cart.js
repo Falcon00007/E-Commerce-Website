@@ -5,23 +5,19 @@ import CartItem from './CartItem';
 import { MyContext } from '../../context/AppContext';
 
 const Cart = (props) => {
-  const cartCtx= useContext(MyContext);
-  const {cart, removeItem} = cartCtx;
 
-  let totalPrice=0
+  const {cart, removeItem} = useContext(MyContext);
+
+  let totalPrice=0;
   cart.map((item)=>{
     return totalPrice+=item.price;
   })
-
-  const cartRemoveItemHandler = (id)=>{
-     removeItem(id);
-  }
 
   const cartItems= (
     <ul>
     {cart.map((product)=>(
         <CartItem key={product.id} imageUrl={product.imageUrl} title={product.title} price={product.price}
-        itemRemoveHandler={()=>cartRemoveItemHandler(product.id)}/>
+        itemRemoveHandler={()=>removeItem(product.id)}/>
     ))}
     </ul>
   )

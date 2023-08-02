@@ -62,3 +62,7 @@ header li a{
     width: 3rem;
     height: 1.8rem;
 }
+.active_link {
+    color: red;
+    font-weight: bold; 
+  }
