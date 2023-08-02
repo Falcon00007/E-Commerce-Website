@@ -12,13 +12,13 @@ const Footer = () => {
         </div>
         <div className={classes.footer_icons}>
             <ul>
-                <li><a href="https://www.youtube.com" >
+                <li><a href="https://www.youtube.com" target="_blank" rel="noreferrer">
                     <img src={Youtube} alt="YouTube logo"/>
                 </a></li>
-                <li><a href="https://spotify.com">
+                <li><a href="https://spotify.com" target="_blank" rel="noreferrer">
                     <img src={Spotify} alt="Spotify logo"/>
                 </a></li>
-                <li><a href="https://facebook.com">
+                <li><a href="https://facebook.com" target="_blank" rel="noreferrer">
                     <img src={Facebook} alt="Facebook logo" />
                 </a></li>
             </ul>
