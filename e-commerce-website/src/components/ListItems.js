@@ -5,6 +5,7 @@ import Main from './Body/Main'
 import Footer from './footer/Footer'
 import Cart from './cart/Cart'
 import About from './navbar/About';
+import Home from './navbar/Home';
 
 
 const ListItems = () => {
@@ -14,20 +15,30 @@ const ListItems = () => {
       setCartIsShown(true);
     };
   
-    const hideCartHandler = () => {
+    const hideCartHandler = () => { 
       setCartIsShown(false);
     };
 
   return (
     <Router>
     <MyNavbar onShowCart={showCartHandler}/>
-    {cartIsShown && <Cart onClose={hideCartHandler}/>}
     <Routes>
     <Route path='/' element={<Main/>}/>
+    <Route path='/home' element={<Home/>}/>
     <Route path='/about' element={<About/>}/>
     </Routes>
+    {cartIsShown && <Cart onClose={hideCartHandler}/>}
     <Footer/>
     </Router>
+
+    // <>
+    // <MyNavbar onShowCart={showCartHandler}/>
+    // {cartIsShown && <Cart onClose={hideCartHandler}/>}
+    // <main>
+    // <Main/>
+    // </main>
+    // <Footer/>
+    // </>
   )
 }
 

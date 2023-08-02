@@ -7,18 +7,19 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin: 15px 2px 20px 0;
 }
-.image{
+.image{ 
     height: 100px;
     width: 100px;
     position: relative;
-    right: 40px;
+    right: 10px;
+    margin-right: 3px;
 }
 .title{
     font-weight: 300;
     position: relative;
-    right: 90px;
+    right: 4rem;
     top: 25px;
     display: flex;
     flex-wrap: wrap;
@@ -30,10 +31,17 @@
 .itemPrice{
     position: relative;
     right: 6rem;
+    top: 2rem;
 }
 .removeBtn{
     height: 3rem;
     border-radius: 15%;
     width: 5rem;
     background-color: rgb(233, 81, 81);
+    margin-top: 1.5rem;
+}
+.quantity{
+    position: relative;
+    top: 2rem;
+    left: 2rem;
 }

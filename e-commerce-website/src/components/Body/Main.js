@@ -13,12 +13,14 @@ let products = productList.map((product,index)=>(
 ))
 
   return( 
+    <>
     <section>
    <h2 className="heading">COLORS</h2>
     <div className="content-container">
     {products}
     </div>
     </section>
+    </>
   )
 };
 

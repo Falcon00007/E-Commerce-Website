@@ -1,7 +1,9 @@
 footer{
+    position: fixed;
+    width: 100%;
+    left: 0;
+  bottom: 0;
     display:flex;
-    margin-top:40px;
-    padding:20px;
     background: #56CCF2;
 }
 footer .footer_title{

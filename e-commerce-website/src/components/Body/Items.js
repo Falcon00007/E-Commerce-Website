@@ -10,7 +10,7 @@ const Items = (props) => {
             <img className="prod-images" src={props.imageUrl} alt={"alb"+props.index+1} />
           </div>
           <div className="prod-details">
-            <span className='price'>
+            <span>
               $<span>{props.price}</span>
             </span>
             <button className="shop-item-button" type="button" onClick={props.onAddHandler}>
