@@ -6,6 +6,7 @@ import Footer from './footer/Footer'
 import Cart from './cart/Cart'
 import About from './navbar/About';
 import Home from './navbar/Home';
+import ContactUs from './navbar/ContactUs';
 
 
 const ListItems = () => {
@@ -26,19 +27,11 @@ const ListItems = () => {
     <Route path='/' element={<Main/>}/>
     <Route path='/home' element={<Home/>}/>
     <Route path='/about' element={<About/>}/>
+    <Route path='/contactUs' element={<ContactUs/>}/>
     </Routes>
     {cartIsShown && <Cart onClose={hideCartHandler}/>}
     <Footer/>
     </Router>
-
-    // <>
-    // <MyNavbar onShowCart={showCartHandler}/>
-    // {cartIsShown && <Cart onClose={hideCartHandler}/>}
-    // <main>
-    // <Main/>
-    // </main>
-    // <Footer/>
-    // </>
   )
 }
 
