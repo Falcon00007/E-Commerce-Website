@@ -16,7 +16,8 @@ function AddMovie(props) {
       title: titleRef.current.value,
       openingText: openingTextRef.current.value,
       releaseDate: releaseDateRef.current.value,
-    };
+      deleteBtn: <button>Delete Movie</button>,
+    }
 
     props.onAddMovie(newMovieObj);
   }

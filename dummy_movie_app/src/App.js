@@ -61,6 +61,34 @@ function App() {
     console.log(data);
   }
 
+  async function onDeleteMovie(id){
+    try{
+      const movieData= await fetch(`https://react-movieapp-demo-default-rtdb.firebaseio.com/movies/${id}.json//`, {
+        method: 'GET'
+    });
+    if(movieData.ok){
+      const movieDetails= await movieData.json();
+       let details= {
+          Title: movieDetails.title,
+          Opening_Text: movieDetails.openingText,
+          Release_Date: movieDetails.releaseDate
+        }
+        console.log(details);
+    }
+
+      const res= await fetch(`https://react-movieapp-demo-default-rtdb.firebaseio.com/movies/${id}.json//`, {
+        method: 'DELETE'
+    });
+    if (res.ok) {
+      setMovies((prevMovies) => prevMovies.filter((movie) => movie.id !== id));
+    } else {
+      throw new Error('Failed to Delete The Movie')
+    }
+    } catch(err){
+      setError(err.message);
+    }
+}
+
   const handleCancelRetry = () => {
     if (cancelLoadTimer) {
       clearTimeout(cancelLoadTimer);
@@ -71,7 +99,7 @@ function App() {
 
   let content = <p><b>Found No Movies.</b></p>;
   if(movies.length>0){
-    content= <MoviesList movies={movies} />
+    content= <MoviesList movies={movies} onDeleteHandler={onDeleteMovie}/>
   }
   if(error){
     content= <p><b>{error}</b></p>
