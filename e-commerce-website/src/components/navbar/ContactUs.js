@@ -1,8 +1,7 @@
-import React,{useState,useRef, useCallback} from 'react'
+import React,{useState,useRef} from 'react'
 import "./ContactUs.css"
 
 const ContactUs = () => {
-    const [userData, setUserData] = useState([]);
     const [error, setError] = useState(null);
 
     const name= useRef("");
@@ -23,14 +22,20 @@ const ContactUs = () => {
                 body: JSON.stringify(data),
             })
             if(!response.ok){
-                throw new Error('User info not submitted...please try again!')
+                 throw new Error('User info not submitted...please try again!')
             }
-            const feedback= await response.json();
-            console.log(feedback);
         } catch(err){
-            setError(err)
+            setError('User info not submitted...please try again! ')
         }  
         console.log(data) 
+        name.current.value="";
+        email.current.value="";
+        phone.current.value="";
+    }
+
+    let content="";
+    if(error){
+        content=error;
     }
 
   return (
@@ -52,6 +57,7 @@ const ContactUs = () => {
 <button type="submit" className="btn btn-success">Submit</button>
     </div>
     </form>
+    {content}
     </>
     )
 }

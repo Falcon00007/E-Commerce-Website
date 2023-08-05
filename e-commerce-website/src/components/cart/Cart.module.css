@@ -45,14 +45,14 @@
     border: 2px solid #110f0e;
     padding: 0.5rem;
     border-radius: 10%;
-    height: 30px;
+    height: 2.5rem;
     width: 5px;
     color: #8a2b06;
   }
   .button--alt h1{
     transform: rotate(45deg);
     position: inherit;
-    bottom: 25px;
+    bottom: 1.7rem;
     right: 5px;
   }
   .actions .button {

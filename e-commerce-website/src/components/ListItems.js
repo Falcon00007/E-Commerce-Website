@@ -7,6 +7,7 @@ import Cart from './cart/Cart'
 import About from './navbar/About';
 import Home from './navbar/Home';
 import ContactUs from './navbar/ContactUs';
+import ProductDetails from './pages/ProductDetails';
 
 
 const ListItems = () => {
@@ -28,6 +29,7 @@ const ListItems = () => {
     <Route path='/home' element={<Home/>}/>
     <Route path='/about' element={<About/>}/>
     <Route path='/contactUs' element={<ContactUs/>}/>
+    <Route path='/products/:id' element={<ProductDetails/>}/>
     </Routes>
     {cartIsShown && <Cart onClose={hideCartHandler}/>}
     <Footer/>
