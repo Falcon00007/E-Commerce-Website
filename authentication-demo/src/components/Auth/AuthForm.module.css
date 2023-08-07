@@ -7,6 +7,7 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 1rem;
   text-align: center;
+  color: white;
 }
 
 .auth h1 {
@@ -36,14 +37,14 @@
   padding: 0.25rem;
 }
 
-.actions,.submitBtn {
+.actions{
   margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.actions button, .submitBtn button {
+.actions button{
   cursor: pointer;
   font: inherit;
   color: white;
@@ -53,7 +54,7 @@
   padding: 0.5rem 2.5rem;
 }
 
-.actions button:hover, .submitBtn button:hover {
+.actions button:hover{
   background-color: #873abb;
   border-color: #873abb;
   box-shadow: 2px 3px 6px #efeef0;
