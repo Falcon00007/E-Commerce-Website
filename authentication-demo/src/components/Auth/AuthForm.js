@@ -1,4 +1,5 @@
 import { useState,useRef, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../store/auth-context';
 
 import classes from './AuthForm.module.css';
@@ -10,6 +11,7 @@ const AuthForm = () => {
   const emailInputRef= useRef();
   const passwordInputRef= useRef();
   const authCtx= useContext(AuthContext);
+  const navigate= useNavigate();
 
 
   const switchAuthModeHandler = () => {
@@ -44,6 +46,7 @@ const AuthForm = () => {
         if(res.ok){
           return res.json().then(data=>{
             authCtx.login(data.idToken);
+            navigate('/');
           })
         } else{
               return res.json().then(data=>{  //in case the POST method fails, catch the response like this

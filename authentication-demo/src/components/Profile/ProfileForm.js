@@ -1,10 +1,12 @@
 import { useRef, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../store/auth-context';
 import classes from './ProfileForm.module.css';
 
 const ProfileForm = () => {
   const newPasswordInputRef= useRef();
   const authCtx= useContext(AuthContext);
+  const navigate= useNavigate();
 
 
   const submitHandler=(e)=>{
@@ -26,6 +28,7 @@ const ProfileForm = () => {
       //assume that always success in this demo... we can add error handling logic if we want
 
       console.log(res.ok); //check if true or false 
+      navigate('/');
     })
   }
 
