@@ -19,7 +19,32 @@ const AuthForm = () => {
     setLoading(true);
     
     if(isLogin){
-
+      fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDrLRqQxJu-kif2o12fbaea3v9q2fMxtGY',{
+        method: 'POST',
+        body: JSON.stringify({
+          email: enteredEmail,
+          password: enteredPassword,
+          returnSecureToken: true
+        }),
+        headers :{
+          'content-type' : 'application/json'
+        }
+      }).then(res =>{
+        setLoading(false);
+        if(res.ok){
+          return res.json().then(data=>{
+            console.log(data.idToken);
+          })
+        } else{
+          return res.json().then(data=>{
+            if(data && data.error.message){
+              alert("Login not successful- " + data.error.message);
+            } else{
+            alert("Some error occured... Please try again!");
+            }
+          })
+        }
+      })
     } else{
       fetch("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDrLRqQxJu-kif2o12fbaea3v9q2fMxtGY",{
         method:'POST',
@@ -34,13 +59,16 @@ const AuthForm = () => {
       }).then(res =>{
         setLoading(false);
         if(res.ok){
-
+          return res.json().then(data=>{
+            console.log(data.idToken);
+          })
         } else{
               return res.json().then(data=>{  //in case the POST method fails, catch the response like this
               if(data && data.error.message){
-                alert("Data not Submitted- " + data.error.message)
-              }
-              alert("Some error occured!! Please try again..")
+                alert("Sign Up not successful- " + data.error.message)
+              } else{
+                alert("Some error occured!! Please try again..")
+              }    
           })
         }
       })
