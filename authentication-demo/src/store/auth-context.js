@@ -9,15 +9,17 @@ const AuthContext = React.createContext({
 });
 
 export const AuthContextProvider =(props)=>{
-    const [token, setToken]= useState(null);
+    const [token, setToken]= useState(localStorage.getItem('token'));
 
     const userIsLoggedIn= !!token; //returns true or false deoending on if token is a string or null... if token is not emoty, return true and vice versa
     
     const loginHandler =(token)=>{
+        localStorage.setItem('token', token);
         setToken(token)
     }
     const logoutHandler=()=>{
         setToken(null); 
+        localStorage.removeItem('token')
     }
 
     const contextValue = {
