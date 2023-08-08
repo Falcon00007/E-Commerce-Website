@@ -1,4 +1,5 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
+import { Navigate } from 'react-router-dom';
 
 
 const AuthContext = React.createContext({
@@ -11,8 +12,9 @@ const AuthContext = React.createContext({
 export const AuthContextProvider =(props)=>{
     const [token, setToken]= useState(localStorage.getItem('token'));
 
-    const userIsLoggedIn= !!token; //returns true or false deoending on if token is a string or null... if token is not emoty, return true and vice versa
+    let userIsLoggedIn= !!token; //returns true or false deoending on if token is a string or null... if token is not emoty, return true and vice versa
     
+
     const loginHandler =(token)=>{
         localStorage.setItem('token', token);
         setToken(token)
@@ -21,6 +23,19 @@ export const AuthContextProvider =(props)=>{
         setToken(null); 
         localStorage.removeItem('token')
     }
+
+    useEffect(()=>{
+        if(userIsLoggedIn){
+            let timer= setTimeout(()=>{
+          logoutHandler();
+          alert('You have been automatically logged out due to inactivity.');
+          <Navigate to='/auth'/>
+            },60000)
+            return (()=>{
+                clearTimeout(timer);
+            })
+        }
+       },[userIsLoggedIn]);
 
     const contextValue = {
         token: token,

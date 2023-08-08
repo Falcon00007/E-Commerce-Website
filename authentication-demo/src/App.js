@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext} from 'react';
 import { Routes, Route, Navigate} from 'react-router-dom';
 import AuthContext from './store/auth-context';
 import Layout from './components/Layout/Layout';
@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage';
 
 function App() {
   const authCtx= useContext(AuthContext);
+
 
   return (
     <Layout>
