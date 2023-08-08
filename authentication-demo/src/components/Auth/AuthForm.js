@@ -1,52 +1,35 @@
-import { useState,useRef } from 'react';
+import { useState,useRef, useContext } from 'react';
+import AuthContext from '../../store/auth-context';
 
 import classes from './AuthForm.module.css';
+
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const emailInputRef= useRef();
   const passwordInputRef= useRef();
+  const authCtx= useContext(AuthContext);
 
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
+  
   const onSubmitHandler=(e)=>{
     e.preventDefault();
     let enteredEmail=  emailInputRef.current.value;
     let enteredPassword= passwordInputRef.current.value; //add validations for email and password as per you
     setLoading(true);
     
+    let url;
     if(isLogin){
-      fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDrLRqQxJu-kif2o12fbaea3v9q2fMxtGY',{
-        method: 'POST',
-        body: JSON.stringify({
-          email: enteredEmail,
-          password: enteredPassword,
-          returnSecureToken: true
-        }),
-        headers :{
-          'content-type' : 'application/json'
-        }
-      }).then(res =>{
-        setLoading(false);
-        if(res.ok){
-          return res.json().then(data=>{
-            console.log(data.idToken);
-          })
-        } else{
-          return res.json().then(data=>{
-            if(data && data.error.message){
-              alert("Login not successful- " + data.error.message);
-            } else{
-            alert("Some error occured... Please try again!");
-            }
-          })
-        }
-      })
-    } else{
-      fetch("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDrLRqQxJu-kif2o12fbaea3v9q2fMxtGY",{
+      url= 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDrLRqQxJu-kif2o12fbaea3v9q2fMxtGY';
+    }
+      else{
+        url= 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDrLRqQxJu-kif2o12fbaea3v9q2fMxtGY';
+      }
+      fetch(url ,{
         method:'POST',
         body: JSON.stringify({
           email: enteredEmail,
@@ -60,19 +43,18 @@ const AuthForm = () => {
         setLoading(false);
         if(res.ok){
           return res.json().then(data=>{
-            console.log(data.idToken);
+            authCtx.login(data.idToken);
           })
         } else{
               return res.json().then(data=>{  //in case the POST method fails, catch the response like this
               if(data && data.error.message){
-                alert("Sign Up not successful- " + data.error.message)
+                alert("Authentication not successful- " + data.error.message)
               } else{
                 alert("Some error occured!! Please try again..")
               }    
           })
         }
       })
-    }
     
     emailInputRef.current.value="";
     passwordInputRef.current.value="";
