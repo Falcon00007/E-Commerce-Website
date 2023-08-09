@@ -44,9 +44,9 @@ const Login = () => {
         setLoading(false);
         if(res.ok){
           return res.json().then(data=>{
-            authCtx.login(data.idToken);
+            authCtx.login(data.idToken, data.email);
             navigate('/');
-            console.log(data.idToken)
+            console.log(data)
           })
         } else{
               return res.json().then(data=>{  //in case the POST method fails, catch the response like this

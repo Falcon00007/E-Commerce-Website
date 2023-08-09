@@ -31,7 +31,7 @@ const ListItems = () => {
     <MyNavbar onShowCart={showCartHandler}/>
     <Routes>
     {!loggedIn && <Route path='/login' element={<Login/>}/>}
-    {loggedIn && <Route path='/' element={<Main/>}/>}
+    {loggedIn && <Route path='/' exact element={<Main/>}/>}
     <Route path='/home' element={<Home/>}/>
     <Route path='/about' element={<About/>}/>
     <Route path='/contactUs' element={<ContactUs/>}/>

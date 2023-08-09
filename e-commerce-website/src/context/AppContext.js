@@ -1,9 +1,12 @@
-import React,{createContext,useState} from 'react';
-
+import React,{createContext,useState, useContext} from 'react';
+import AuthContext from './auth-context';
+import axios from 'axios';
 
   const MyContext= createContext();
 
 const AppContext = (props) => {
+  const userMail= useContext(AuthContext).userEmail;
+
   const productList=[
     {
         id:"album1",
@@ -41,11 +44,16 @@ const AppContext = (props) => {
     }
     if(addedProduct && !addedProductIndex){
       setCart((prevCart)=>[...prevCart, addedProduct])
+      axios.post(`https://crudcrud.com/api/0fa299e1c82b4ac3b1a75397140a9e11/cart${userMail}/${id}`, addedProduct)
+      .then(()=>{
+        console.log("Item added to cart for " + userMail)
+      })
     }
   }
 
   const removeItem = (id)=>{
           setCart((prevCart)=> prevCart.filter((item)=>item.id!==id))
+          axios.delete(`https://crudcrud.com/api/0fa299e1c82b4ac3b1a75397140a9e11/cart${userMail}/${id}`)
         }
 
   return (
