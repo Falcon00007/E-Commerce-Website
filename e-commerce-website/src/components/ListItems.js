@@ -1,5 +1,6 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import AuthContext from '../context/auth-context';
 import MyNavbar from './navbar/MyNavbar'
 import Main from './Body/Main'
 import Footer from './footer/Footer'
@@ -8,6 +9,8 @@ import About from './navbar/About';
 import Home from './navbar/Home';
 import ContactUs from './navbar/ContactUs';
 import ProductDetails from './pages/ProductDetails';
+import Login from './pages/Login';
+
 
 
 const ListItems = () => {
@@ -26,6 +29,7 @@ const ListItems = () => {
     <MyNavbar onShowCart={showCartHandler}/>
     <Routes>
     <Route path='/' element={<Main/>}/>
+    <Route path='/login' element={<Login/>}/>
     <Route path='/home' element={<Home/>}/>
     <Route path='/about' element={<About/>}/>
     <Route path='/contactUs' element={<ContactUs/>}/>
