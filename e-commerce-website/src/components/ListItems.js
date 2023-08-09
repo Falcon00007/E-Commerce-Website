@@ -1,5 +1,5 @@
 import React,{useContext, useState} from 'react'
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
 import AuthContext from '../context/auth-context';
 import MyNavbar from './navbar/MyNavbar'
 import Main from './Body/Main'
@@ -12,9 +12,11 @@ import ProductDetails from './pages/ProductDetails';
 import Login from './pages/Login';
 
 
-
 const ListItems = () => {
     const [cartIsShown, setCartIsShown] = useState(false);
+    const authCtx= useContext(AuthContext);
+
+    const loggedIn = authCtx.isLoggedIn;
 
     const showCartHandler = () => {
       setCartIsShown(true);
@@ -28,14 +30,15 @@ const ListItems = () => {
     <Router>
     <MyNavbar onShowCart={showCartHandler}/>
     <Routes>
-    <Route path='/' element={<Main/>}/>
-    <Route path='/login' element={<Login/>}/>
+    {!loggedIn && <Route path='/login' element={<Login/>}/>}
+    {loggedIn && <Route path='/' element={<Main/>}/>}
     <Route path='/home' element={<Home/>}/>
     <Route path='/about' element={<About/>}/>
     <Route path='/contactUs' element={<ContactUs/>}/>
-    <Route path='/products/:id' element={<ProductDetails/>}/>
+    {<Route path='/products/:id' element={<ProductDetails/>}/>}
+    <Route path='*' element={<Navigate to='/login'/>}/>
     </Routes>
-    {cartIsShown && <Cart onClose={hideCartHandler}/>}
+    {loggedIn && cartIsShown && <Cart onClose={hideCartHandler}/>}
     <Footer/>
     </Router>
   )
