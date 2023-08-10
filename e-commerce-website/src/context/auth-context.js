@@ -11,25 +11,23 @@ const AuthContext = createContext({
 
 export const AuthContextProvider =(props)=>{
     const [token, setToken]= useState(localStorage.getItem('token'));
-    const [userMail, setUserMail] = useState(null);
+    const [userMail, setUserMail] = useState("");
 
     let userIsLoggedIn= !!token; //returns true or false deoending on if token is a string or null... if token is not emoty, return true and vice versa
     
 
     const loginHandler =(token,email)=>{
         localStorage.setItem('token', token);
-        setToken(token)
-        let userEmail="";
-        for(let i of email){
-            if(i!=="." || i!=="@"){
-                userEmail+=i;
-            }
-        }
+        let userEmail= email.replace(/[@.]/g, "");
+        setToken(token)        
         setUserMail(userEmail);
+        console.log(userEmail)
     }
     const logoutHandler=()=>{
         setToken(null); 
+        setUserMail("");
         localStorage.removeItem('token')
+        localStorage.removeItem('email')
     }
 
     const contextValue = {

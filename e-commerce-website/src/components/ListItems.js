@@ -16,6 +16,7 @@ const ListItems = () => {
     const [cartIsShown, setCartIsShown] = useState(false);
     const authCtx= useContext(AuthContext);
 
+
     const loggedIn = authCtx.isLoggedIn;
 
     const showCartHandler = () => {

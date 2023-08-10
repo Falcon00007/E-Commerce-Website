@@ -45,6 +45,8 @@ const Login = () => {
         if(res.ok){
           return res.json().then(data=>{
             authCtx.login(data.idToken, data.email);
+            localStorage.setItem("email", data.email.replace(/[@.]/g, ""));
+            console.log(data.email)
             navigate('/');
             console.log(data)
           })

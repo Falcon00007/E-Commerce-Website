@@ -30,7 +30,7 @@ const MyNavbar = (props) => {
        <li><NavLink activeclassname={classes.active} to="/about">ABOUT</NavLink></li>
        {!isLoggedIn && <li><NavLink activeclassname={classes.active} to="/login">LOGIN</NavLink></li>}
        <li><NavLink activeclassname={classes.active} to="/contactUs">CONTACT US</NavLink></li>
-       {isLoggedIn && <li><button className={classes.cart_holder} id='cart' onClick={props.onShowCart}>CART</button>
+       {isLoggedIn && <li className={classes.cartData}><button className={classes.cart_holder} id='cart' onClick={props.onShowCart}>CART</button>
        <span className={classes.cart_number}><sup>{numberOfCartItems}</sup></span></li>}
        {isLoggedIn && <li><button onClick={logoutHandler} className={classes.logoutBtn}>LOGOUT</button></li>}
        <div>
