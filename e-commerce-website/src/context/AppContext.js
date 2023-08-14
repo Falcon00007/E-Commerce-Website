@@ -1,9 +1,11 @@
-import React,{createContext,useState, useEffect} from 'react';
+import React,{createContext,useState, useEffect,useContext} from 'react';
+import AuthContext from "./auth-context"
 import axios from 'axios';
 
   const MyContext= createContext();
 
 const AppContext = (props) => {
+  const authCtx= useContext(AuthContext)
     
   const productList=[
     {
@@ -43,9 +45,9 @@ const AppContext = (props) => {
       }
       if(addedProduct && !addedProductIndex){  
         const userMail= localStorage.getItem('email');
-        const response= await axios.post(`https://crudcrud.com/api/45995b8842594bf9af6d2d4f7d930606/cart${userMail}`, addedProduct)
-        console.log(response.data);
-        setCart((prevCart)=>[...prevCart, addedProduct]);
+        const response= await axios.post(`https://crudcrud.com/api/7a2b66d41e7a4b3abab8462e3360ddfb/cart${userMail}`, addedProduct)
+        const addedProductWithId={...addedProduct, _id:response.data._id}
+        setCart((prevCart)=>[...prevCart, addedProductWithId]);
       }
     } catch(err){
       console.log("Product not added- " + err);
@@ -56,25 +58,25 @@ const AppContext = (props) => {
     try{
       setCart((prevCart)=> prevCart.filter((item)=>item.id!==itemid));
       const userMail= localStorage.getItem('email');
-      const response = await axios.delete(`https://crudcrud.com/api/45995b8842594bf9af6d2d4f7d930606/cart${userMail}/${id}`)
-      console.log(response.data);
-    } catch(err){
+      await axios.delete(`https://crudcrud.com/api/7a2b66d41e7a4b3abab8462e3360ddfb/cart${userMail}/${id}`)
+   } catch(err){
       console.log("Item not removed- " + err);
     }     
         }
-
-        useEffect(()=>{
-          const fetchItems= async()=>{
-            try{
-              const userMail= localStorage.getItem('email');
-             const response= await axios.get(`https://crudcrud.com/api/45995b8842594bf9af6d2d4f7d930606/cart${userMail}`);
-            console.log(response);
-            setCart(response.data);
-            }catch(err){
-              console.log("Fetch Items failed- " + err);
-            }
+        const fetchItems= async()=>{
+          try{
+            const userMail= localStorage.getItem('email');
+           const response= await axios.get(`https://crudcrud.com/api/7a2b66d41e7a4b3abab8462e3360ddfb/cart${userMail}`);
+          setCart(response.data);
+          }catch(err){
+            console.log("Fetch Items failed- " + err);
           }
-          fetchItems();
+        }
+        
+        useEffect(()=>{ 
+          if(authCtx.isLoggedIn){
+            fetchItems();
+          }       
         },[])
        
 

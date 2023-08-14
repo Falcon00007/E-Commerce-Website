@@ -4,9 +4,10 @@ import Modal from '../../UI/Modal';
 import CartItem from './CartItem';
 import { MyContext } from '../../context/AppContext';
 
-const Cart = (props) => {
 
-  const {cart, removeItem} = useContext(MyContext);
+const Cart = (props) => {
+ const {cart, removeItem} = useContext(MyContext);
+
 
   let totalPrice=0;
   cart.map((item)=>{
